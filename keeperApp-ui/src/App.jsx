@@ -1,0 +1,13 @@
+import Header from "./components/Header.jsx";
+import Note from "./components/Note.jsx";
+import Footer from "./components/Footer.jsx";
+import './App.css'
+export default function App(){
+  return <>
+  <Header/>
+  <Note/>
+  <Footer/>
+  
+  </>
+
+}

@@ -1,0 +1,134 @@
+:root {
+  --primary-bg: #0b0e14;
+  --seat-available: #e2e8f0;
+  --seat-business: #fbbf24;
+  --seat-taken: #334155;
+  --accent: #2563eb;
+}
+
+.plane-app-container {
+  min-height: 100vh;
+  width: 100vw;       /* Force it to take full width */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  background: #0b0e14;     /* Your dark background color */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;      /* Prevents unwanted side-scrolling */
+  gap:10px
+}
+
+/* Plane Body Styling */
+.plane-section {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 80px 80px 20px 20px;
+  border: 2px solid #334155;
+  width: 320px;
+}
+
+.nose-cone {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  border-bottom: 1px dashed #475569;
+  margin-bottom: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* Seating Grid Logic */
+.seating-area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 30px repeat(2, 1fr); /* 30px is the aisle gap */
+  gap: 12px;
+}
+
+.seat-unit {
+  height: 45px;
+  border: none;
+  border-radius: 6px;
+  background: var(--seat-available);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Push seats after the 2nd column to skip the aisle column */
+.seat-unit:nth-child(4n+3) { grid-column: 4; }
+.seat-unit:nth-child(4n+4) { grid-column: 5; }
+
+/* Status Classes */
+.seat-unit.taken {
+  background: var(--seat-taken);
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.seat-unit.business {
+  border: 2px solid var(--seat-business);
+}
+
+/* Summary Box Styling */
+.summary-section {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  width: 350px;
+}
+
+.details-box {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.details-box p {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  color: #64748b;
+}
+
+.details-box span {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.book-now-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* This is the class your React logic will toggle */
+.seat-unit.active {
+  background-color: #2563eb !important; /* Premium Blue */
+  color: white !important;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+  border: 2px solid #60a5fa;
+  z-index: 10;
+}
+
+/* Add a smooth feel to the state change */
+.seat-unit {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+/* Hover effect for seats that ARE NOT taken */
+.seat-unit:not(.taken):hover {
+  background-color: #dbeafe;
+  border: 2px solid #3b82f6;
+  transform: translateY(-2px);
+}

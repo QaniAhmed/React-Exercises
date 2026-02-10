@@ -6,7 +6,9 @@ export default function App(){
   const [state,setState] = useState(Array(9))
   const [counter,setCounter]= useState(0)
   const TurnTitle = "Player"+ (Turn=='X'?'X':'O') + "s Turn" ; 
-  const[GG,setGG] = useState(false) ;
+  const[GameOver,setGameOver] = useState(false) ;
+  const [result,setResult]= useState('')
+
   //wining array
   const WinningArray = [[0,1,2],[3,4,5],[6,7,8], //row
                         [0,3,6],[1,4,7],[2,5,8], //col
@@ -18,44 +20,48 @@ const Boxes = [...Array(9)].map((_, index) => index + 1);
   {
     //take a copy 
   let newBoard = [...state];
-  //avoid duplicate (if null use it or avoid)
+
+  //avoid duplicate (if null use it, or avoid)
   if(newBoard[index]==null)
     {
-      if(GG)return
-      // console.log("init counter:"+counter);
+      if(GameOver)return
+
       newBoard[index]=Turn; //write the chararacter X|O
 
       //check if there's winner here for current turn
-      WinningArray.map((WinningCase)=>{ //0,1,2
+      WinningArray.forEach((WinningCase)=>{ //0,1,2
         if(newBoard[WinningCase[0]]==newBoard[WinningCase[1]]&&newBoard[WinningCase[0]]==newBoard[WinningCase[2]] && newBoard[WinningCase[0]]!=null )
           {
             console.log(Turn+" Winner")
-            setGG(true);
+            setGameOver(true);
+            setResult('Player '+Turn+' Wins')
             return
         }
       })
       console.log(newBoard)
       Turn=='X'? setTurn('O') : setTurn('X') //change the turn after write
       setCounter(counter+1)
-      // console.log("last counter:"+counter);
 
       //update the board
       setState(newBoard)
     } 
     //check Game Over
-    if(counter == 8)
+    if(counter == 8 && !GameOver)
     {
-      setGG(true);
+      setGameOver(true);
+      setResult('Game Tied!')
       return
     }
   }
+
+
   function ResetGame(){
     //make all boxes null 
     setState((Array(9)));
     //reset the counter 
     setCounter(0);
-    //reset the Game over (GG)
-    setGG(false);
+    //reset the Game over (GameOver)
+    setGameOver(false);
     //set Turn
     setTurn('X')
   }
@@ -63,8 +69,8 @@ const Boxes = [...Array(9)].map((_, index) => index + 1);
   return <div className="game-container">
   <h1 className="title">Tic-Tac-Toe</h1>
   
-  <div className="status-message" style={{fontSize:GG?'4.5rem':'1.5rem'}}>
-    {GG?"Game over":TurnTitle}
+  <div className="status-message" style={{fontSize:GameOver?'2.7rem':'1.5rem'}}>
+    {GameOver?result:TurnTitle}
   </div>
 
   <div className="board">

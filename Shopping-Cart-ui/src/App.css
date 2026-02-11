@@ -1,0 +1,75 @@
+/* App.css */
+body {
+  background: #40407f;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container { 
+  font-family: 'Poppins', sans-serif; 
+  width: 100%;
+  max-width: 420px; 
+  padding: 30px; 
+  border-radius: 24px; 
+  background: #3e5bac; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+h1 { text-align: center; color: #4ecca3; font-weight: 700; margin-bottom: 25px; }
+
+.item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 18px; 
+  background: #0f3460; 
+  margin-bottom: 15px; 
+  border-radius: 16px; 
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+
+.item:hover { background: #1a1a2e; border-color: #4ecca3; }
+
+.item-info strong { display: block; font-size: 1.1em; color: #eee; }
+.item-info span { color: #4ecca3; font-weight: bold; }
+
+.controls { display: flex; gap: 10px; }
+
+button { 
+  cursor: pointer; 
+  border: none; 
+  border-radius: 10px; 
+  padding: 10px 15px; 
+  font-weight: bold;
+  transition: all 0.2s; 
+}
+
+.add-btn { 
+  width: 100%; 
+  padding: 15px; 
+  background: linear-gradient(135deg, #4ecca3, #45b293);
+  color: #1a1a2e; 
+  font-size: 1.1em;
+  margin-bottom: 30px; 
+  box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
+}
+
+.plus-btn { background: #e94560; color: white; }
+.remove-btn { background: rgba(255,255,255,0.1); color: #ff4d4d; }
+.remove-btn:hover { background: #ff4d4d; color: white; }
+
+/* Total Section */
+.summary {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px dashed rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  font-weight: bold;
+}

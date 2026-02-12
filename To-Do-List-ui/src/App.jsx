@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css"
+import ToDoList from "./components/ToDolist.jsx";
+import Heading from "./components/Heading.jsx";
 
 function App() {
   const [ItemText,setItemText] = useState("")
@@ -10,18 +12,13 @@ function App() {
     setItemText(data)
   }
   function handleClick(){
-    console.log("the Value is :",ItemText)
     setdataList((prev)=>[...prev,ItemText])
     console.log(dataList)
   }
-  function showList(list){
-    return <li>{list}</li>
-  }
   return (
     <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-      </div>
+      <Heading/>
+
       <div className="form">
         <input type="text" onChange={handleChange}/>
         <button onClick={handleClick}>
@@ -30,7 +27,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {dataList.map(showList)}
+          {dataList.map((data)=><ToDoList list={data}/>)}
         </ul>
       </div>
     </div>

@@ -1,3 +1,11 @@
+import { useState } from "react"
+
 export default function ToDoList(prop){
-    return <li>{prop.list}</li>
+    const [isDone,setisDone] = useState(0)
+    function handleClick(){
+        setisDone(!isDone)
+    
+
+    }
+    return <li  onClick={handleClick} style={{ textDecoration:isDone?'line-through' : 'none'}} >{prop.list}</li>
 }

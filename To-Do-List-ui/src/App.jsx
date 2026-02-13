@@ -15,6 +15,12 @@ function App() {
     setdataList((prev)=>[...prev,ItemText])
     console.log(dataList)
   }
+  function deleteItem(id){
+    setdataList((prev)=>{
+      return prev.filter((item,index)=>index!=id)})
+
+
+  }
   return (
     <div className="container">
       <Heading/>
@@ -27,7 +33,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {dataList.map((data)=><ToDoList list={data}/>)}
+          {dataList.map((data,index)=><ToDoList list={data} key={index} id={index} delete={deleteItem} />)}
         </ul>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css"
 import ToDoList from "./components/ToDolist.jsx";
 import Heading from "./components/Heading.jsx";
+import InputArea from "./components/inputArea.jsx";
 
 function App() {
   const [ItemText,setItemText] = useState("")
@@ -10,6 +11,7 @@ function App() {
   function handleChange(event){
     let data = event.target.value;
     setItemText(data)
+    console.log(data)
   }
   function handleClick(){
     setdataList((prev)=>[...prev,ItemText])
@@ -26,10 +28,7 @@ function App() {
       <Heading/>
 
       <div className="form">
-        <input type="text" onChange={handleChange}/>
-        <button onClick={handleClick}>
-          <span>Add</span>
-        </button>
+        <InputArea change={handleChange} click={handleClick}/>
       </div>
       <div>
         <ul>
